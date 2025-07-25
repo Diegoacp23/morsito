@@ -164,6 +164,21 @@ button:hover {
   50%  { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
+.modoNoche {
+  background: linear-gradient(to bottom right, #2a2a2e, #3e3e44);
+  color: #ffe6f2;
+}
+
+.modoNoche #mensajeInicial,
+.modoNoche #textoCarta,
+.modoNoche #mensajeFinal {
+  color: #ffb3cc;
+}
+
+.modoNoche #btnCerrar {
+  background-color: #ff4d88;
+}
+
 
 
 
