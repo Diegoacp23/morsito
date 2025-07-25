@@ -3,123 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feliz Aniversario 🌻🌹</title>
+  <title>Flor para mi amor 🌻</title>
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle, #fff8ec, #f7e2c4);
-      font-family: 'Segoe UI', sans-serif;
+      background: url('URL_DE_TU_FOTO') center/cover no-repeat fixed;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
     }
-
     canvas {
+      background: rgba(255,255,255,0.2);
       border-radius: 12px;
     }
-
-    .carta {
-      margin-top: 20px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-      display: none;
-      text-align: center;
-    }
-
     button {
-      margin-top: 10px;
+      margin-top: 1cm;
       padding: 0.5rem 1rem;
       font-size: 16px;
-      background-color: #e91e63;
-      color: white;
+      background-color: #FFA216;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
-
-    @media (max-width: 600px) {
-      canvas {
-        width: 90vw;
-        height: 90vw;
-      }
-      .carta {
-        font-size: 14px;
-      }
-    }
   </style>
 </head>
 <body>
-  <canvas id="canvas" width="500" height="500"></canvas>
-  <button onclick="mostrarCarta()">Ver Mensaje 💌</button>
-  <div class="carta" id="carta">
-    <h2>Feliz Aniversario mi amor 🌻</h2>
-    <p>Gracias por florecer mi vida todos los días. Te amo infinitamente. 💖</p>
-  </div>
+  <canvas id="flor" width="400" height="400"></canvas>
+  <button onclick="mostrarCarta()">Ver la carta 💌</button>
 
   <script>
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById("flor");
     const ctx = canvas.getContext("2d");
+    const phi = Math.PI * (137.508 / 180);
 
-    const girasoles = [
-      { x: 250, y: 150 },
-      { x: 170, y: 320 },
-      { x: 330, y: 320 }
-    ];
+    for (let i = 0; i < 200; i++) {
+      const r = 4 * Math.sqrt(i);
+      const theta = i * phi;
+      const x = 200 + r * Math.cos(theta);
+      const y = 200 + r * Math.sin(theta);
 
-    function drawSunflower(x, y, time) {
-      for (let i = 0; i < 20; i++) {
-        const angle = i * Math.PI * 2 / 20 + time / 100;
-        const radius = 30;
-        const petalX = x + Math.cos(angle) * radius;
-        const petalY = y + Math.sin(angle) * radius;
-
+      if (i < 160) {
         ctx.beginPath();
-        ctx.arc(petalX, petalY, 12, 0, Math.PI * 2);
-        ctx.fillStyle = "#FFA216";
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "brown";
         ctx.fill();
+      } else {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(i * phi);
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(70, -20);
+        ctx.lineTo(140, 0);
+        ctx.lineTo(70, 20);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
       }
-      // Centro marrón
-      ctx.beginPath();
-      ctx.arc(x, y, 15, 0, Math.PI * 2);
-      ctx.fillStyle = "#5D4037";
-      ctx.fill();
     }
-
-    function drawRose(x, y) {
-      ctx.beginPath();
-      ctx.arc(x, y, 8, 0, Math.PI * 2);
-      ctx.fillStyle = "#C2185B";
-      ctx.fill();
-    }
-
-    function draw(time) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Dibujar girasoles
-      for (const flor of girasoles) {
-        drawSunflower(flor.x, flor.y, time);
-      }
-
-      // Dibujar rosas alrededor en forma circular
-      for (let i = 0; i < 20; i++) {
-        const angle = i * (Math.PI * 2 / 20);
-        const radius = 180 + Math.sin(time / 200 + i) * 5;
-        const x = canvas.width / 2 + Math.cos(angle) * radius;
-        const y = canvas.height / 2 + Math.sin(angle) * radius;
-        drawRose(x, y);
-      }
-
-      requestAnimationFrame(draw);
-    }
-
-    draw();
 
     function mostrarCarta() {
-      document.getElementById("carta").style.display = "block";
+      alert("Feliz aniversario mi amor 🌻\nGracias por florecer mi vida cada día. Te amo 💖");
     }
   </script>
 </body>
