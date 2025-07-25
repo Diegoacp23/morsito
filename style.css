@@ -6,6 +6,24 @@ body {
   overflow-x: hidden;
 }
 
+/* Animaciones */
+@keyframes flotante {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes caer {
+  0% { top: -50px; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: 100vh; opacity: 0; transform: rotate(360deg); }
+}
+
+/* Mensaje inicial */
 #mensajeInicial {
   text-align: center;
   font-size: 2rem;
@@ -14,64 +32,74 @@ body {
   animation: flotante 3s ease infinite;
 }
 
-@keyframes flotante {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Botón forma de carta */
+/* Botón carta */
 #cartaBoton {
   font-size: 5rem;
-  text-align: center;
+  display: block;
   margin: 50px auto;
   cursor: pointer;
   transition: transform 0.3s;
 }
+
 #cartaBoton:hover {
   transform: scale(1.1);
 }
 
+/* Contenido de la carta */
 #contenidoCarta {
   text-align: center;
   display: none;
   animation: aparecer 1.5s ease;
 }
-#imagenCarta {
-  width: 300px;
+
+#imagenCarta,
+#imagenInicio {
+  width: 90%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
   border-radius: 10px;
-  margin-top: 20px;
 }
+
 #textoCarta {
-  font-size: 1.2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
   color: #d4005f;
+  max-width: 90%;
+  margin: 0 auto;
 }
+
+/* Botón cerrar */
 #btnCerrar {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin: 20px auto;
+  padding: 0.8rem 1.5rem;
   background-color: crimson;
   color: white;
   border: none;
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
+  display: block;
+  max-width: 280px;
 }
 
+/* Mensaje final */
 #mensajeFinal {
   display: none;
   position: fixed;
   bottom: 40px;
   width: 100%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: crimson;
+  padding: 10px;
   animation: aparecer 2s ease;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
+/* Emojis que caen */
 .emojis, .brillitos, .corazones {
   position: fixed;
   top: -50px;
@@ -79,14 +107,20 @@ body {
   animation: caer 5s linear infinite;
 }
 
-@keyframes caer {
-  0% { top: -50px; opacity: 0; }
-  50% { opacity: 1; }
-  100% { top: 100vh; opacity: 0; transform: rotate(360deg); }
+/* 🎯 Responsive para móviles */
+@media screen and (max-width: 480px) {
+  #mensajeInicial {
+    font-size: 1.5rem;
+  }
+
+  #textoCarta {
+    font-size: 0.95rem;
+  }
+
+  #cartaBoton,
+  #btnCerrar {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
 }
-#imagenInicio {
-  width: 300px;
-  display: block;
-  margin: 20px auto;
-  border-radius: 10px;
-}
+
