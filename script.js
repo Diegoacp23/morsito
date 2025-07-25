@@ -1,3 +1,12 @@
+window.addEventListener('DOMContentLoaded', () => {
+  // activa música de fondo con cualquier interacción
+  const fondo = document.getElementById('musicaFondo');
+  document.body.addEventListener('click', () => {
+    fondo.play().catch(() => {});
+  }, { once: true });
+});
+
+
 window.onload = () => lluviaEmojis();
 
 function lluviaEmojis() {
@@ -13,13 +22,20 @@ function lluviaEmojis() {
 }
 
 function abrirCarta() {
-  document.getElementById('musicaFondo').pause();
-  document.getElementById('musicaCarta').play();
+  const fondo = document.getElementById('musicaFondo');
+  const carta = document.getElementById('musicaCarta');
 
+  // Pausar fondo y empezar música de la carta
+  fondo.pause();
+  carta.currentTime = 0;
+  carta.play().catch(() => {});
+
+  // Mostrar contenido de la carta
   document.getElementById('imagenInicio').style.display = 'none';
   document.getElementById('contenidoCarta').style.display = 'block';
   document.getElementById('cartaBoton').style.display = 'none';
 
+  // Agregar texto emocionante ❤️
   document.getElementById('textoCarta').innerHTML = `
     <p>Eres lo más lindo que me pasó en la vida,</p>
     <p>Hoy celebramos nuestro tercer aniversario... y aún me parece increíble que la vida me haya regalado a alguien como tú. Cada instante contigo es un suspiro bonito, una canción suave, una chispa en mi alma.</p>
@@ -30,6 +46,7 @@ function abrirCarta() {
     <p><strong>Con todo mi cariño,<br>Tu baby el informático ❤️</strong></p>
   `;
 }
+
 
 
 
