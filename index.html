@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Mi Amor 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      background: url('URL_DE_TU_FOTO') center/cover no-repeat fixed;
+      filter: brightness(1.1);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    canvas {
+      display: block;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .mensaje {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje">
+    <h2>Feliz aniversario 💖</h2>
+    <p>Hace 3 años empezó una historia que sigo queriendo escribir contigo cada día.</p>
+  </div>
+  <canvas id="flor" width="400" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('flor');
+    const ctx = canvas.getContext('2d');
+    const goldenAngle = Math.PI * (137.508 / 180);
+
+    for (let i = 0; i < 140; i++) {
+      const r = 4 * Math.sqrt(i);
+      const theta = i * goldenAngle;
+      const x = 200 + r * Math.cos(theta);
+      const y = 200 + r * Math.sin(theta);
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, 2 * Math.PI);
+      ctx.fillStyle = '#FFA216';
+      ctx.fill();
+    }
+  </script>
+</body>
+</html>
