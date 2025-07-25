@@ -124,4 +124,18 @@ body {
     padding: 0.6rem 1.2rem;
   }
 }
+button {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  background-color: #ffdddd;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #ffe6e6;
+}
+
 
