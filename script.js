@@ -32,7 +32,17 @@ function abrirCarta() {
   const fondo = document.getElementById('musicaFondo');
   const carta = document.getElementById('musicaCarta');
 
-  fondo.pause();
+  // Fade-out suave del fondo
+  let volumen = fondo.volume;
+  const fadeOut = setInterval(() => {
+    volumen -= 0.05;
+    fondo.volume = Math.max(volumen, 0);
+    if (volumen <= 0) {
+      clearInterval(fadeOut);
+      fondo.pause();
+    }
+  }, 100);
+
   carta.currentTime = 0;
   carta.play().catch(() => {
     alert('No se pudo reproducir la música de la carta.');
@@ -42,16 +52,36 @@ function abrirCarta() {
   document.getElementById('contenidoCarta').style.display = 'block';
   document.getElementById('cartaBoton').style.display = 'none';
 
-  document.getElementById('textoCarta').innerHTML = `
-    <p>Eres lo más lindo que me pasó en la vida,</p>
-    <p>Hoy celebramos nuestro tercer aniversario... y aún me parece increíble que la vida me haya regalado a alguien como tú. Cada instante contigo es un suspiro bonito, una canción suave, una chispa en mi alma.</p>
-    <p>Gracias por tu risa, por tu ternura, por tus abrazos que me salvan cada día. Eres la mujer más hermosa que he conocido, por dentro y por fuera, y mi corazón late más fuerte cada vez que te pienso.</p>
-    <p>En estos tres años hemos construido algo único, algo mágico. Y si me preguntas qué quiero para el futuro, solo te diría: más de nosotros. Más amaneceres contigo, más aventuras, más miradas cómplices.</p>
-    <p>Te amo con todo lo que soy, y te extraño cuando no estás. Esta carta es solo una forma de recordártelo... pero mi amor por ti no cabe en palabras.</p>
-    <p>Feliz aniversario, mi reina. Por muchos años más a tu lado.</p>
-    <p><strong>Con todo mi cariño,<br>Tu baby el informático ❤️</strong></p>
-  `;
+  // Máquina de escribir
+  const textoCarta = document.getElementById('textoCarta');
+  const mensaje = `Eres lo más lindo que me pasó en la vida...
+
+Hoy celebramos nuestro tercer aniversario... y aún me parece increíble que la vida me haya regalado a alguien como tú.
+
+Cada instante contigo es un suspiro bonito, una canción suave, una chispa en mi alma.
+
+Gracias por tu risa, por tu ternura, por tus abrazos que me salvan cada día.
+
+En estos tres años hemos construido algo único, algo mágico.
+
+Te amo con todo lo que soy, y te extraño cuando no estás.
+
+Feliz aniversario, mi reina. Por muchos años más a tu lado.
+
+Con todo mi cariño,
+Tu baby el informático ❤️`;
+
+  let i = 0;
+  textoCarta.innerHTML = '';
+  (function escribir() {
+    if (i < mensaje.length) {
+      textoCarta.innerHTML += mensaje[i] === '\n' ? '<br>' : mensaje[i];
+      i++;
+      setTimeout(escribir, 40);
+    }
+  })();
 }
+
 
 function cerrarCarta() {
   document.getElementById('contenidoCarta').style.display = 'none';
@@ -95,3 +125,29 @@ function mostrarMensajeFinal() {
     mensaje.style.display = 'none';
   }, 6000);
 }
+function iniciarMusicaFondo() {
+  const fondo = document.getElementById('musicaFondo');
+  fondo.currentTime = 0;
+  fondo.play().catch(() => {
+    alert("Tu navegador bloqueó la reproducción automática. Toca de nuevo para activar la música.");
+  });
+}
+function corazonesFlotantes() {
+  setInterval(() => {
+    const corazon = document.createElement('div');
+    corazon.classList.add('corazonFlotante');
+    corazon.innerHTML = '💖';
+    corazon.style.left = Math.random() * 100 + 'vw';
+    corazon.style.fontSize = Math.random() * 24 + 16 + 'px';
+    corazon.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), 10000);
+  }, 500); // cada medio segundo
+}
+
+window.onload = () => {
+  lluviaEmojis();
+  corazonesFlotantes(); // activar corazones flotantes
+};
+
+
