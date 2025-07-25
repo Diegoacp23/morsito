@@ -1,18 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
-  // Sugerencia: muestra botón para activar música de fondo manualmente
-  const fondo = document.getElementById('musicaFondo');
-  const activarBtn = document.createElement('button');
-  activarBtn.textContent = '🎶 Activar música de fondo';
-  activarBtn.classList.add('botonMusica');
-  activarBtn.onclick = () => {
-    fondo.currentTime = 0;
-    fondo.play().catch(() => {
-      alert('No se pudo reproducir la música. Intenta tocar nuevamente.');
-    });
-    activarBtn.remove(); // elimina el botón una vez activado
-  };
-  document.body.appendChild(activarBtn);
-});
+
 
 window.onload = () => lluviaEmojis();
 
