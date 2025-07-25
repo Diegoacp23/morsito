@@ -3,36 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para Mi Amor 🌻</title>
+  <title>Feliz Aniversario 🌻🌹</title>
   <style>
     body {
       margin: 0;
-      background: url('more.jpeg') center/cover no-repeat fixed;
+      background: radial-gradient(circle, #fff8ec, #f7e2c4);
       font-family: 'Segoe UI', sans-serif;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
+
     canvas {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
+      border-radius: 12px;
     }
+
     .carta {
       margin-top: 20px;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       color: white;
       padding: 1rem;
-      border-radius: 12px;
+      border-radius: 10px;
       display: none;
       text-align: center;
     }
+
     button {
       margin-top: 10px;
       padding: 0.5rem 1rem;
       font-size: 16px;
-      background-color: #FFA216;
+      background-color: #e91e63;
+      color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -45,48 +48,81 @@
       }
       .carta {
         font-size: 14px;
-        padding: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <canvas id="canvas" width="400" height="400"></canvas>
-  <button onclick="mostrarCarta()">Ver la carta 💌</button>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <button onclick="mostrarCarta()">Ver Mensaje 💌</button>
   <div class="carta" id="carta">
-    <h2>Feliz aniversario 🌹</h2>
-    <p>Gracias por estos 3 años a tu lado. Eres mi sol, mi flor, mi paz. Te amo. 💖</p>
+    <h2>Feliz Aniversario mi amor 🌻</h2>
+    <p>Gracias por florecer mi vida todos los días. Te amo infinitamente. 💖</p>
   </div>
 
   <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const goldenAngle = Math.PI * (137.5 / 180);
-    let angle = 0;
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
 
-    function drawFlower() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < 100; i++) {
-        const r = 4 * Math.sqrt(i);
-        const theta = i * goldenAngle + angle;
-        const x = canvas.width / 2 + r * Math.cos(theta);
-        const y = canvas.height / 2 + r * Math.sin(theta);
-        const opacity = Math.max(0, 1 - i / 100);
+    const girasoles = [
+      { x: 250, y: 150 },
+      { x: 170, y: 320 },
+      { x: 330, y: 320 }
+    ];
+
+    function drawSunflower(x, y, time) {
+      for (let i = 0; i < 20; i++) {
+        const angle = i * Math.PI * 2 / 20 + time / 100;
+        const radius = 30;
+        const petalX = x + Math.cos(angle) * radius;
+        const petalY = y + Math.sin(angle) * radius;
+
         ctx.beginPath();
-        ctx.arc(x, y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,162,22,${opacity})`;
+        ctx.arc(petalX, petalY, 12, 0, Math.PI * 2);
+        ctx.fillStyle = "#FFA216";
         ctx.fill();
       }
-      angle += 0.01;
-      requestAnimationFrame(drawFlower);
+      // Centro marrón
+      ctx.beginPath();
+      ctx.arc(x, y, 15, 0, Math.PI * 2);
+      ctx.fillStyle = "#5D4037";
+      ctx.fill();
     }
 
-    drawFlower();
+    function drawRose(x, y) {
+      ctx.beginPath();
+      ctx.arc(x, y, 8, 0, Math.PI * 2);
+      ctx.fillStyle = "#C2185B";
+      ctx.fill();
+    }
+
+    function draw(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Dibujar girasoles
+      for (const flor of girasoles) {
+        drawSunflower(flor.x, flor.y, time);
+      }
+
+      // Dibujar rosas alrededor en forma circular
+      for (let i = 0; i < 20; i++) {
+        const angle = i * (Math.PI * 2 / 20);
+        const radius = 180 + Math.sin(time / 200 + i) * 5;
+        const x = canvas.width / 2 + Math.cos(angle) * radius;
+        const y = canvas.height / 2 + Math.sin(angle) * radius;
+        drawRose(x, y);
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
 
     function mostrarCarta() {
-      document.getElementById('carta').style.display = 'block';
+      document.getElementById("carta").style.display = "block";
     }
   </script>
 </body>
 </html>
+
 
