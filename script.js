@@ -1,19 +1,26 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // activa música de fondo con cualquier interacción
+  // Sugerencia: muestra botón para activar música de fondo manualmente
   const fondo = document.getElementById('musicaFondo');
-  document.body.addEventListener('click', () => {
-    fondo.play().catch(() => {});
-  }, { once: true });
+  const activarBtn = document.createElement('button');
+  activarBtn.textContent = '🎶 Activar música de fondo';
+  activarBtn.classList.add('botonMusica');
+  activarBtn.onclick = () => {
+    fondo.currentTime = 0;
+    fondo.play().catch(() => {
+      alert('No se pudo reproducir la música. Intenta tocar nuevamente.');
+    });
+    activarBtn.remove(); // elimina el botón una vez activado
+  };
+  document.body.appendChild(activarBtn);
 });
-
 
 window.onload = () => lluviaEmojis();
 
 function lluviaEmojis() {
   for (let i = 0; i < 40; i++) {
-    let emoji = document.createElement('div');
+    const emoji = document.createElement('div');
     emoji.classList.add('emojis');
-    emoji.innerHTML = ['🎉','💞','😍','🌹','💟','🌻','💋','💌'][Math.floor(Math.random() * 8)];
+    emoji.innerHTML = ['🎉', '💞', '😍', '🌹', '💟', '🌻', '💋', '💌'][Math.floor(Math.random() * 8)];
     emoji.style.left = Math.random() * 100 + 'vw';
     emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
     document.body.appendChild(emoji);
@@ -25,17 +32,16 @@ function abrirCarta() {
   const fondo = document.getElementById('musicaFondo');
   const carta = document.getElementById('musicaCarta');
 
-  // Pausar fondo y empezar música de la carta
   fondo.pause();
   carta.currentTime = 0;
-  carta.play().catch(() => {});
+  carta.play().catch(() => {
+    alert('No se pudo reproducir la música de la carta.');
+  });
 
-  // Mostrar contenido de la carta
   document.getElementById('imagenInicio').style.display = 'none';
   document.getElementById('contenidoCarta').style.display = 'block';
   document.getElementById('cartaBoton').style.display = 'none';
 
-  // Agregar texto emocionante ❤️
   document.getElementById('textoCarta').innerHTML = `
     <p>Eres lo más lindo que me pasó en la vida,</p>
     <p>Hoy celebramos nuestro tercer aniversario... y aún me parece increíble que la vida me haya regalado a alguien como tú. Cada instante contigo es un suspiro bonito, una canción suave, una chispa en mi alma.</p>
@@ -47,21 +53,20 @@ function abrirCarta() {
   `;
 }
 
-
-
-
 function cerrarCarta() {
   document.getElementById('contenidoCarta').style.display = 'none';
   document.getElementById('cartaBoton').style.display = 'block';
+
   document.getElementById('musicaCarta').pause();
   document.getElementById('musicaFondo').play();
+
   lluviaCorazones();
   mostrarMensajeFinal();
 }
 
 function lluviaBrillitos() {
   for (let i = 0; i < 30; i++) {
-    let brilli = document.createElement('div');
+    const brilli = document.createElement('div');
     brilli.classList.add('brillitos');
     brilli.innerHTML = '✨';
     brilli.style.left = Math.random() * 100 + 'vw';
@@ -73,7 +78,7 @@ function lluviaBrillitos() {
 
 function lluviaCorazones() {
   for (let i = 0; i < 30; i++) {
-    let corazon = document.createElement('div');
+    const corazon = document.createElement('div');
     corazon.classList.add('corazones');
     corazon.innerHTML = '💖';
     corazon.style.left = Math.random() * 100 + 'vw';
@@ -86,6 +91,7 @@ function lluviaCorazones() {
 function mostrarMensajeFinal() {
   const mensaje = document.getElementById('mensajeFinal');
   mensaje.style.display = 'block';
-  setTimeout(() => { mensaje.style.display = 'none'; }, 6000);
+  setTimeout(() => {
+    mensaje.style.display = 'none';
+  }, 6000);
 }
-
