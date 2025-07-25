@@ -2,72 +2,63 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flor para mi amor 🌻</title>
+  <title>¡Feliz Aniversario! 🎉</title>
   <style>
     body {
       margin: 0;
+      overflow: hidden;
       background: url('URL_DE_TU_FOTO') center/cover no-repeat fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: 'Comic Sans MS', cursive;
     }
-    canvas {
-      background: rgba(255,255,255,0.2);
-      border-radius: 12px;
+
+    #mensaje {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5rem;
+      color: pink;
+      text-shadow: 2px 2px 5px red;
+      animation: arco 3s ease-in-out forwards;
+      opacity: 0;
     }
-    button {
-      margin-top: 1cm;
-      padding: 0.5rem 1rem;
-      font-size: 16px;
-      background-color: #FFA216;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+
+    @keyframes arco {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      50% { transform: translate(-50%, -60%) scale(1.2); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .emoticono {
+      position: absolute;
+      font-size: 2rem;
+      animation: flotando 6s linear infinite;
+    }
+
+    @keyframes flotando {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <canvas id="flor" width="400" height="400"></canvas>
-  <button onclick="mostrarCarta()">Ver la carta 💌</button>
+  <div id="mensaje">💘 Feliz 3 años mi amorcito precioso 💘</div>
 
   <script>
-    const canvas = document.getElementById("flor");
-    const ctx = canvas.getContext("2d");
-    const phi = Math.PI * (137.508 / 180);
-
-    for (let i = 0; i < 200; i++) {
-      const r = 4 * Math.sqrt(i);
-      const theta = i * phi;
-      const x = 200 + r * Math.cos(theta);
-      const y = 200 + r * Math.sin(theta);
-
-      if (i < 160) {
-        ctx.beginPath();
-        ctx.arc(x, y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = "brown";
-        ctx.fill();
-      } else {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(i * phi);
-        ctx.fillStyle = "yellow";
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(70, -20);
-        ctx.lineTo(140, 0);
-        ctx.lineTo(70, 20);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      }
+    const emojis = ['❤️','😊','💖','🎆','🥰','💫'];
+    for (let i = 0; i < 50; i++) {
+      const span = document.createElement('span');
+      span.className = 'emoticono';
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * window.innerWidth + 'px';
+      span.style.top = Math.random() * window.innerHeight + 'px';
+      span.style.animationDuration = (3 + Math.random() * 5) + 's';
+      document.body.appendChild(span);
     }
 
-    function mostrarCarta() {
-      alert("Feliz aniversario mi amor 🌻\nGracias por florecer mi vida cada día. Te amo 💖");
-    }
+    setTimeout(() => {
+      document.getElementById('mensaje').style.opacity = 1;
+    }, 1000);
   </script>
 </body>
 </html>
