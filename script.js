@@ -1,12 +1,12 @@
 function abrirCarta() {
-  document.getElementById('cartaImg').src = 'img/fotoCarta.jpg'; // nueva imagen
+  document.getElementById('cartaImg').src = 'carta.jpeg'; // nueva imagen
   document.getElementById('musicaFondo').pause();
   document.getElementById('musicaCarta').play();
   crearBrillitosConCorazones();
 }
 
 function cerrarCarta() {
-  document.getElementById('cartaImg').src = 'img/imagenInicial.jpg'; // volver a foto inicial
+  document.getElementById('cartaImg').src = 'carta.jpeg'; // volver a foto inicial
   document.getElementById('musicaCarta').pause();
   document.getElementById('musicaFondo').play();
   crearBrillitosConCorazones();
