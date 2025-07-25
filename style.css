@@ -84,4 +84,9 @@ body {
   50% { opacity: 1; }
   100% { top: 100vh; opacity: 0; transform: rotate(360deg); }
 }
-
+#imagenInicio {
+  width: 300px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+}
