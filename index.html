@@ -8,14 +8,14 @@
 </head>
 <body onclick="document.getElementById('musicaFondo').play()">
 
-  <audio id="musicaFondo" src="Manuel Medrano - Bajo El Agua (Video Oficial) - Manuel Medrano.mp3" autoplay loop></audio>
+  <audio id="musicaFondo" src="Manuel Medrano - Bajo El Agua (Video Oficial) - Manuel Medrano.mp3" loop></audio>
   <audio id="musicaCarta" src="Jósean Log - Chachachá (Lyric Video) - Jósean Log.mp3" preload="auto"></audio>
 
   <!-- Mensaje inicial flotante -->
   <div id="mensajeInicial">🎉 Feliz aniversario N°3, amor 🎉</div>
 <!-- Imagen de inicio -->
 <img id="imagenInicio" src="more.jpeg" alt="Imagen de inicio" />
-
+<button onclick="iniciarMusicaFondo()" class="botonMusica">🎶 Activar música de fondo</button>
   <!-- Carta botón -->
   <div id="cartaBoton" onclick="abrirCarta()">✉️</div>
 
