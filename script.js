@@ -16,6 +16,7 @@ function abrirCarta() {
   document.getElementById('musicaFondo').pause();
   document.getElementById('musicaCarta').play();
 
+  document.getElementById('imagenInicio').style.display = 'none';
   document.getElementById('contenidoCarta').style.display = 'block';
   document.getElementById('cartaBoton').style.display = 'none';
 
@@ -29,6 +30,7 @@ function abrirCarta() {
     <p><strong>Con todo mi cariño,<br>Tu baby el informático ❤️</strong></p>
   `;
 }
+
 
 
 function cerrarCarta() {
