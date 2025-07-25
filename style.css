@@ -2,29 +2,68 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom right, #ffeef0, #ffd6e0);
+  background: linear-gradient(to bottom right, #ffd6e0, #ffeef1);
   overflow-x: hidden;
 }
 
-.carta-container {
-  position: relative;
+#mensajeInicial {
   text-align: center;
-  margin-top: 100px;
+  font-size: 2rem;
+  margin-top: 30px;
+  color: crimson;
+  animation: flotante 3s ease infinite;
 }
 
-.carta-container img {
+@keyframes flotante {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Botón forma de carta */
+#cartaBoton {
+  font-size: 5rem;
+  text-align: center;
+  margin: 50px auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+#cartaBoton:hover {
+  transform: scale(1.1);
+}
+
+#contenidoCarta {
+  text-align: center;
+  display: none;
+  animation: aparecer 1.5s ease;
+}
+#imagenCarta {
   width: 300px;
-  transition: transform 0.4s ease;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+#textoCarta {
+  font-size: 1.2rem;
+  color: #d4005f;
+}
+#btnCerrar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 #mensajeFinal {
+  display: none;
   position: fixed;
   bottom: 40px;
   width: 100%;
   text-align: center;
   font-size: 2rem;
   color: crimson;
-  display: none;
   animation: aparecer 2s ease;
 }
 
@@ -33,12 +72,11 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-.corazon {
+.emojis, .brillitos, .corazones {
   position: fixed;
   top: -50px;
   font-size: 30px;
   animation: caer 5s linear infinite;
-  color: hotpink;
 }
 
 @keyframes caer {
@@ -46,3 +84,4 @@ body {
   50% { opacity: 1; }
   100% { top: 100vh; opacity: 0; transform: rotate(360deg); }
 }
+
