@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Morela</title>
+  <title>Carta de Aniversario</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Música -->
   <audio id="musicaFondo" src="inicio.mp3" autoplay loop></audio>
   <audio id="musicaCarta" src="carta.mp3" preload="auto"></audio>
 
-  <!-- Carta -->
-  <div class="carta-container">
-    <img id="cartaImg" src="more.jpeg" alt="Carta" />
-    <button onclick="abrirCarta()">Abrir Carta</button>
-    <button onclick="cerrarCarta()">Cerrar Carta</button>
-  </div>
+  <!-- Mensaje inicial flotante -->
+  <div id="mensajeInicial">🎉 Feliz aniversario N°3, amor 🎉</div>
 
+  <!-- Carta botón -->
+  <div id="cartaBoton" onclick="abrirCarta()">✉️</div>
+
+<!-- Imagen y texto de la carta -->
+<div id="contenidoCarta" style="display: none;">
+  <img src="carta.jpeg" id="imagenCarta" />
+  <div id="textoCarta"></div>
+  <button id="btnCerrar" onclick="cerrarCarta()">Cerrar</button>
+</div>
+  
   <!-- Mensaje final -->
-  <div id="mensajeFinal">
-    <p>💌 Te amo y te extraño mucho 💌</p>
-  </div>
+  <div id="mensajeFinal">💌 Te amo y te extraño mucho 💌</div>
 
   <script src="script.js"></script>
 </body>
