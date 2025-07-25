@@ -34,7 +34,7 @@ body {
 
 /* Botón carta */
 #cartaBoton {
-  font-size: 8rem;
+  font-size: 12rem;
   display: block;
   margin: 50px auto;
   cursor: pointer;
