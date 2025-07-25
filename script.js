@@ -4,7 +4,7 @@ function lluviaEmojis() {
   for (let i = 0; i < 40; i++) {
     let emoji = document.createElement('div');
     emoji.classList.add('emojis');
-    emoji.innerHTML = ['🎉','💞','😍','🌹''💟','🌻','💋','💌'][Math.floor(Math.random() * 4)];
+    emoji.innerHTML = ['🎉','💞','😍','🌹','💟','🌻','💋','💌'][Math.floor(Math.random() * 8)];
     emoji.style.left = Math.random() * 100 + 'vw';
     emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
     document.body.appendChild(emoji);
@@ -71,21 +71,4 @@ function mostrarMensajeFinal() {
   mensaje.style.display = 'block';
   setTimeout(() => { mensaje.style.display = 'none'; }, 6000);
 }
-window.addEventListener('load', () => {
-  const fondo = document.getElementById('musicaFondo');
-  const carta = document.getElementById('musicaCarta');
-  const botonCarta = document.getElementById('cartaBoton');
-
-  // Activar música de fondo con la primera interacción
-  document.body.addEventListener('click', () => {
-    fondo.play();
-  }, { once: true });
-
-  // Cambiar la música al abrir la carta
-  botonCarta.addEventListener('click', () => {
-    fondo.pause();
-    fondo.currentTime = 0;
-    carta.play();
-  });
-});
 
